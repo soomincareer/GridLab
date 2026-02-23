@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>GridLab</title>
 
   <style>
@@ -12,7 +12,6 @@
       font-weight: normal;
       font-style: normal;
     }
-
     @font-face {
       font-family: 'Superlative Regular';
       src: url('/static/fonts/Superlative-Regular.woff') format('woff');
@@ -24,79 +23,81 @@
 
     body {
       font-family: 'Superlative', sans-serif;
-      background: #000000;
+      background: #000;
       min-height: 100vh;
       padding: 20px;
     }
 
+    /* container 폭을 중간값으로 */
     .container {
       max-width: 960px;
       margin: 0 auto;
-      background: #ffffff;
-      border: 2px solid #000000;
+      background: #fff;
+      border: 2px solid #000;
       overflow: hidden;
     }
 
-    /* ===== Header ===== */
     .header {
-      background: #000000;
-      color: #ffffff;
-      padding: 26px 24px 22px;
-      border-bottom: 2px solid #000000;
-      display: grid;
-      place-items: center;
-      gap: 14px;
+      background: #000;
+      color: #fff;
+      padding: 26px 18px 22px;
       text-align: center;
+      border-bottom: 2px solid #000;
     }
 
     .header h1 {
-      font-size: clamp(28px, 5vw, 44px);
-      margin: 0;
+      font-size: 2.1em;
+      margin-bottom: 6px;
       font-weight: normal;
       font-family: 'Superlative Regular', sans-serif;
       letter-spacing: 0.2px;
     }
 
     .header p {
-      opacity: 1;
-      font-size: clamp(14px, 2.2vw, 18px);
+      font-size: 1.05em;
       font-weight: normal;
+      opacity: 1;
     }
 
-    /* Hero visual (square frame) */
+    /* HERO VISUAL: 4:3, 가로로 길게 */
+    .heroWrap {
+      margin-top: 16px;
+      display: flex;
+      justify-content: center;
+    }
+
     .heroVisual {
-      width: min(960px, 74vw);
-      aspect-ratio: 2 / 1;
-      border: 2px solid #ffffff;
-      background: #ffffff;
+      width: min(640px, 92vw);     /* 컨테이너 폭과 균형 */
+      aspect-ratio: 4 / 3;         /* ✅ 4:3 */
+      border: 2px solid #fff;
+      background: #fff;
       overflow: hidden;
     }
 
-    #heroCanvas {
+    .heroVisual canvas {
       width: 100%;
       height: 100%;
       display: block;
     }
 
-    /* ===== Content ===== */
     .content {
-      padding: 26px;
-      background: #ffffff;
+      padding: 28px;
+      background: #fff;
     }
 
     .section {
-      margin-bottom: 22px;
-      border: 2px solid #000000;
+      margin-bottom: 26px;
+      border: 2px solid #000;
       padding: 18px;
-      background: #ffffff;
+      background: #fff;
     }
 
     .section h2 {
-      color: #000000;
+      color: #000;
       margin-bottom: 14px;
-      font-size: 1.2em;
-      border-bottom: 2px solid #000000;
-      padding-bottom: 10px;
+      font-size: 1.35em;
+      border-bottom: 2px solid #000;
+      padding-bottom: 8px;
       font-weight: normal;
       font-family: 'Superlative Regular', sans-serif;
     }
@@ -107,7 +108,7 @@
       display: block;
       font-weight: normal;
       margin-bottom: 10px;
-      color: #000000;
+      color: #000;
       font-family: 'Superlative', sans-serif;
     }
 
@@ -115,7 +116,7 @@
     .form-group input[type="number"] {
       width: 100%;
       padding: 12px;
-      border: 2px solid #000000;
+      border: 2px solid #000;
       border-radius: 0;
       font-size: 16px;
       transition: border-color 0.3s;
@@ -125,106 +126,130 @@
 
     .form-group input:focus {
       outline: none;
-      border-color: #000000;
+      border-color: #000;
       background: #f5f5f5;
     }
 
-    .file-input-wrapper { position: relative; display: inline-block; width: 100%; }
+    .file-input-wrapper {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+    }
+
     .file-input-wrapper input[type="file"] { display: none; }
 
     .file-input-label {
       display: block;
       padding: 14px 18px;
       background: #AFAFAF;
-      color: #ffffff;
+      color: #fff;
       border: 2px solid #515151;
       border-radius: 0;
       text-align: center;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s;
       font-family: 'Superlative', sans-serif;
       font-weight: normal;
       user-select: none;
     }
 
     .file-input-label:hover {
-      background: #000000;
-      color: #ffffff;
-      border-color: #000000;
+      background: #000;
+      color: #fff;
+      border-color: #000;
     }
 
     .file-input-label.has-files {
-      background: #000000;
-      border-color: #000000;
-      color: #ffffff;
+      background: #000;
+      border-color: #000;
+      color: #fff;
     }
 
     .btn {
-      padding: 15px 30px;
-      border: 2px solid #000000;
+      padding: 14px 22px;
+      border: 2px solid #000;
       border-radius: 0;
       font-size: 16px;
       font-weight: normal;
       cursor: pointer;
-      transition: all 0.3s;
+      transition: all 0.2s;
       display: inline-block;
       font-family: 'Superlative', sans-serif;
     }
 
-    .btn-primary { background: #000000; color: #ffffff; }
-    .btn-primary:hover { background: #ffffff; color: #000000; border-color: #000000; }
-    .btn-primary:disabled { opacity: 0.3; cursor: not-allowed; }
+    .btn-primary {
+      background: #000;
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background: #fff;
+      color: #000;
+      border-color: #000;
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
 
     .btn-secondary {
-      background: #ffffff;
-      color: #000000;
-      border: 2px solid #000000;
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
       margin-left: 10px;
     }
-    .btn-secondary:hover { background: #000000; color: #ffffff; }
 
-    /* Previews */
-    .module-preview, .image-preview {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
-      margin-top: 14px;
+    .btn-secondary:hover {
+      background: #000;
+      color: #fff;
     }
 
-    .module-item, .image-item {
-      background: #ffffff;
-      border: 2px solid #000000;
+    .module-preview,
+    .target-preview {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+      gap: 15px;
+      margin-top: 16px;
+    }
+
+    .module-item,
+    .target-item {
+      background: #fff;
+      border: 2px solid #000;
       border-radius: 0;
       padding: 10px;
       text-align: center;
-      transition: all 0.3s;
+      transition: all 0.2s;
       position: relative;
     }
 
-    .module-item:hover, .image-item:hover {
-      background: #000000;
-      color: #ffffff;
+    .module-item:hover,
+    .target-item:hover {
+      background: #000;
+      color: #fff;
     }
 
     .module-item:hover .filename,
     .module-item:hover .brightness,
-    .image-item:hover .filename {
-      color: #ffffff;
+    .target-item:hover .filename {
+      color: #fff;
     }
 
-    .module-item img, .image-item img {
+    .module-item img,
+    .target-item img {
       width: 100%;
       height: 120px;
       object-fit: contain;
       border-radius: 0;
-      background: #ffffff;
+      background: #fff;
       margin-bottom: 8px;
-      border: 1px solid #000000;
+      border: 1px solid #000;
     }
 
     .filename {
       font-size: 12px;
-      color: #000000;
+      color: #000;
       word-break: break-all;
       margin-bottom: 5px;
       font-family: 'Superlative', sans-serif;
@@ -232,18 +257,18 @@
 
     .brightness {
       font-size: 11px;
-      color: #000000;
+      color: #000;
       font-weight: normal;
       font-family: 'Superlative', sans-serif;
     }
 
     .remove-btn {
       position: absolute;
-      top: 6px;
-      right: 6px;
-      background: #000000;
-      color: #ffffff;
-      border: 2px solid #000000;
+      top: 5px;
+      right: 5px;
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
       border-radius: 0;
       width: 24px;
       height: 24px;
@@ -253,78 +278,107 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      transition: all 0.3s;
+      transition: all 0.2s;
       font-family: 'Superlative', sans-serif;
     }
 
-    .remove-btn:hover { background: #ffffff; color: #000000; }
+    .remove-btn:hover {
+      background: #fff;
+      color: #000;
+    }
 
     .loading {
       text-align: center;
-      padding: 40px;
+      padding: 26px;
       display: none;
     }
+
     .loading.active { display: block; }
 
     .spinner {
-      border: 4px solid #ffffff;
-      border-top: 4px solid #000000;
+      border: 4px solid #fff;
+      border-top: 4px solid #000;
       border-radius: 0;
-      width: 50px;
-      height: 50px;
+      width: 46px;
+      height: 46px;
       animation: spin 1s linear infinite;
-      margin: 0 auto 20px;
+      margin: 0 auto 16px;
     }
-    @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
 
-    .result-section { display: none; margin-top: 24px; }
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    .result-section {
+      display: none;
+      margin-top: 28px;
+    }
     .result-section.active { display: block; }
 
     .alert {
-      padding: 15px 20px;
+      padding: 14px 18px;
       border-radius: 0;
-      margin-bottom: 20px;
-      border: 2px solid #000000;
+      margin-bottom: 16px;
+      border: 2px solid #000;
       font-family: 'Superlative', sans-serif;
     }
-    .alert-error { background: #ffffff; color: #000000; border: 2px solid #000000; }
-    .alert-success { background: #000000; color: #ffffff; border: 2px solid #000000; }
+
+    .alert-error {
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
+    }
+
+    .alert-success {
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
+    }
 
     .grid-inputs {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 15px;
     }
 
-    /* Output viewer */
-    .image-viewer {
-      margin-top: 18px;
-      border: 2px solid #000000;
-      padding: 18px;
-      background: #ffffff;
+    .helper-text {
+      font-size: 12px;
+      color: #666;
+      margin-top: 6px;
+      font-family: 'Superlative', sans-serif;
     }
+
+    .image-viewer {
+      margin-top: 20px;
+      border: 2px solid #000;
+      padding: 16px;
+      background: #fff;
+    }
+
     .image-viewer h3 {
       font-family: 'Superlative Regular', sans-serif;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       font-weight: normal;
     }
+
     .image-display {
       text-align: center;
-      margin: 16px 0;
+      margin: 14px 0;
       background: #f5f5f5;
-      border: 2px solid #000000;
-      padding: 16px;
+      border: 2px solid #000;
+      padding: 14px;
       min-height: 320px;
       display: flex;
       align-items: center;
       justify-content: center;
     }
+
     .image-display img {
       max-width: 100%;
       max-height: 560px;
       object-fit: contain;
-      border: 1px solid #000000;
-      background: #ffffff;
+      border: 1px solid #000;
     }
 
     .image-controls {
@@ -332,102 +386,88 @@
       align-items: center;
       justify-content: center;
       gap: 14px;
-      margin-top: 12px;
+      margin-top: 14px;
       flex-wrap: wrap;
     }
 
     .image-nav-btn {
       padding: 10px 16px;
-      background: #000000;
-      color: #ffffff;
-      border: 2px solid #000000;
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
       border-radius: 0;
       cursor: pointer;
       font-family: 'Superlative', sans-serif;
-      transition: all 0.3s;
+      transition: all 0.2s;
     }
-    .image-nav-btn:hover:not(:disabled) { background: #ffffff; color: #000000; }
-    .image-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
 
-    .image-counter { font-family: 'Superlative', sans-serif; font-size: 16px; }
+    .image-nav-btn:hover:not(:disabled) {
+      background: #fff;
+      color: #000;
+    }
+
+    .image-nav-btn:disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+    }
+
+    .image-counter {
+      font-family: 'Superlative', sans-serif;
+      font-size: 16px;
+    }
 
     .toggle-btn {
-      padding: 10px 16px;
-      background: #ffffff;
-      color: #000000;
-      border: 2px solid #000000;
+      padding: 10px 18px;
+      background: #fff;
+      color: #000;
+      border: 2px solid #000;
       border-radius: 0;
       cursor: pointer;
       font-family: 'Superlative', sans-serif;
       margin-top: 10px;
-      transition: all 0.3s;
+      transition: all 0.2s;
     }
-    .toggle-btn:hover { background: #000000; color: #ffffff; }
+
+    .toggle-btn:hover {
+      background: #000;
+      color: #fff;
+    }
 
     .collapsible-content {
       max-height: 0;
       overflow: hidden;
       transition: max-height 0.3s ease-out;
     }
+
     .collapsible-content.active {
       max-height: 1200px;
       transition: max-height 0.5s ease-in;
     }
 
     .download-image-btn {
-      padding: 10px 16px;
-      background: #000000;
-      color: #ffffff;
-      border: 2px solid #000000;
+      padding: 10px 18px;
+      background: #000;
+      color: #fff;
+      border: 2px solid #000;
       border-radius: 0;
       cursor: pointer;
       font-family: 'Superlative', sans-serif;
-      transition: all 0.3s;
-    }
-    .download-image-btn:hover { background: #ffffff; color: #000000; }
-
-    .markdown-preview {
-      background: #ffffff;
-      border: 2px solid #000000;
-      border-radius: 0;
-      padding: 16px;
-      max-height: 600px;
-      overflow-y: auto;
-      font-size: 14px;
-      font-family: 'Superlative', sans-serif;
-      margin-top: 12px;
-    }
-    .markdown-preview h1, .markdown-preview h2 {
-      font-family: 'Superlative Regular', sans-serif;
-      font-weight: normal;
-      color: #000000;
-    }
-    .markdown-preview table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 16px 0;
-    }
-    .markdown-preview th, .markdown-preview td {
-      padding: 10px;
-      border: 1px solid #000000;
-      text-align: left;
-    }
-    .markdown-preview th { background: #000000; color: #ffffff; }
-    .markdown-preview img {
-      max-width: 200px;
-      max-height: 200px;
-      object-fit: contain;
-      border: 1px solid #000000;
+      transition: all 0.2s;
     }
 
-    /* Mobile tweaks */
+    .download-image-btn:hover {
+      background: #fff;
+      color: #000;
+    }
+
+    /* 모바일 가독성 보정 */
     @media (max-width: 640px) {
-      body { padding: 12px; }
-      .content { padding: 16px; }
-      .section { padding: 14px; }
+      body { padding: 14px; }
+      .content { padding: 18px; }
+      .header h1 { font-size: 1.85em; }
+      .header p { font-size: 1.0em; }
+      .heroVisual { width: min(640px, 94vw); }
       .grid-inputs { grid-template-columns: 1fr; }
-      .heroVisual { width: min(300px, 86vw); }
-      .image-display { min-height: 260px; }
     }
   </style>
 </head>
@@ -437,59 +477,77 @@
     <div class="header">
       <h1>GridLab</h1>
       <p>Generate images from modules.</p>
-      <div class="heroVisual" aria-hidden="true">
-        <canvas id="heroCanvas"></canvas>
+
+      <div class="heroWrap">
+        <div class="heroVisual" aria-label="Animated grid preview">
+          <canvas id="heroCanvas"></canvas>
+        </div>
       </div>
     </div>
 
     <div class="content">
-
       <!-- Modules -->
       <div class="section">
         <h2>Modules</h2>
-        <div class="file-input-wrapper">
-          <input type="file" id="moduleFiles" multiple accept="image/*">
-          <label for="moduleFiles" class="file-input-label" id="moduleLabel">Upload images</label>
+        <div class="form-group">
+          <div class="file-input-wrapper">
+            <input type="file" id="moduleFiles" multiple accept="image/*">
+            <label for="moduleFiles" class="file-input-label" id="moduleLabel">
+              Upload images
+            </label>
+          </div>
+          <p class="helper-text">Select module tiles (PNG, JPG, JPEG, etc.)</p>
         </div>
+
         <div id="modulePreview" class="module-preview"></div>
       </div>
 
-      <!-- Image -->
+      <!-- Images -->
       <div class="section">
-        <h2>Image</h2>
-        <div class="file-input-wrapper">
-          <input type="file" id="imageFiles" multiple accept="image/*">
-          <label for="imageFiles" class="file-input-label" id="imageLabel">Upload images</label>
+        <h2>Images</h2>
+        <div class="form-group">
+          <div class="file-input-wrapper">
+            <input type="file" id="targetFiles" multiple accept="image/*">
+            <label for="targetFiles" class="file-input-label" id="targetLabel">
+              Upload images
+            </label>
+          </div>
+          <p class="helper-text">Select images to convert</p>
         </div>
-        <div id="imagePreview" class="image-preview"></div>
+
+        <div id="targetPreview" class="target-preview"></div>
       </div>
 
-      <!-- Grid -->
+      <!-- Settings -->
       <div class="section">
-        <h2>Grid</h2>
+        <h2>Settings</h2>
         <div class="grid-inputs">
           <div class="form-group">
             <label>Grid Size</label>
             <input type="text" id="gridSize" value="64x40" placeholder="e.g. 64x40">
+            <p class="helper-text">Width x Height (e.g. 64x40)</p>
           </div>
           <div class="form-group">
             <label>Output DPI</label>
             <input type="number" id="outputDpi" value="600" min="72" max="1200">
+            <p class="helper-text">Range: 72 ~ 1200</p>
           </div>
         </div>
       </div>
 
-      <div class="section" style="text-align:center; border:none; padding: 0; background: transparent;">
-        <button class="btn btn-primary" id="generateBtn" disabled>Generate</button>
+      <div class="section" style="text-align: center; border: none;">
+        <button class="btn btn-primary" id="generateBtn" disabled>
+          Generate
+        </button>
       </div>
 
       <!-- Loading -->
       <div class="loading" id="loadingSection">
         <div class="spinner"></div>
-        <p>Generating…</p>
+        <p>Generating... Please wait.</p>
       </div>
 
-      <!-- Output -->
+      <!-- Result -->
       <div class="result-section" id="resultSection">
         <h2>Output</h2>
         <div id="alertBox"></div>
@@ -499,195 +557,194 @@
           <div class="image-display" id="imageDisplay">
             <p>No images to display</p>
           </div>
-
           <div class="image-controls">
             <button class="image-nav-btn" id="prevBtn" disabled>&larr; Previous</button>
             <span class="image-counter" id="imageCounter">0 / 0</span>
             <button class="image-nav-btn" id="nextBtn" disabled>Next &rarr;</button>
           </div>
 
-          <div style="text-align:center; margin-top: 14px;">
-            <button class="download-image-btn" id="downloadCurrentImageBtn" style="display:none;">Download Current</button>
-            <button class="download-image-btn" id="downloadAllImagesBtn" style="display:none; margin-left: 10px;">Download All</button>
+          <div style="text-align: center; margin-top: 18px;">
+            <button class="download-image-btn" id="downloadCurrentImageBtn" style="display: none;">
+              Download Current
+            </button>
+            <button class="download-image-btn" id="downloadAllImagesBtn" style="display: none; margin-left: 10px;">
+              Download All
+            </button>
           </div>
         </div>
 
-        <div style="text-align:center; margin-top: 18px;">
-          <button class="toggle-btn" id="toggleDetailsBtn">Show Detailed Statistics</button>
+        <div style="text-align: center; margin-top: 22px;">
+          <button class="toggle-btn" id="toggleDetailsBtn">
+            Show Detailed Statistics
+          </button>
         </div>
 
         <div class="collapsible-content" id="detailsContent">
-          <div class="form-group" style="margin-top: 14px; text-align:center;">
-            <button class="btn btn-secondary" id="downloadMdBtn">Download total.md</button>
-            <button class="btn btn-secondary" id="downloadResultsBtn">Download Results (ZIP)</button>
+          <div class="form-group" style="margin-top: 18px;">
+            <button class="btn btn-secondary" id="downloadMdBtn">
+              Download total.md
+            </button>
+            <button class="btn btn-secondary" id="downloadResultsBtn">
+              Download All Results (ZIP)
+            </button>
           </div>
+
           <div class="markdown-preview" id="markdownPreview"></div>
         </div>
       </div>
-
     </div>
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
   <script>
-    /* ===== Hero animation: grid + diagonal waves (feather + seamless loop) ===== */
+    /* ===============================
+       HERO GRID ANIMATION
+       - 4:3 canvas
+       - GRID: 30 cols, 23 rows
+       - seamless loop
+    =============================== */
     (() => {
       const canvas = document.getElementById('heroCanvas');
       if (!canvas) return;
-
-      const prefersReduced = window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches;
-      if (prefersReduced) return;
-
       const ctx = canvas.getContext('2d', { alpha: false });
 
-      // ====== Tuning values ======
-      const GRID = 40;          // 20x20
-      const BORDER = 1;         // stroke px
+      // ====== 튜닝 값 ======
+      const GRID_COLS = 30;     // ✅ 가로 30
+      const GRID_ROWS = 23;     // ✅ 4:3 비율 대응 (30*3/4=22.5 → 23)
+      const BORDER = 1;         // px
 
-      const WAVE_WIDTH = 1;     // wave thickness in tile units
-      const WAVE_COUNT = 6;
-      const WAVE_SPACING = 6;
+      const WAVE_WIDTH = 1;     // 타일 단위(두께)
+      const WAVE_COUNT = 6;     // 동시에 사선 개수
+      const WAVE_SPACING = 6;   // 사선 간 간격(타일 단위)
 
-      const SPEED = 12;
-      const SOFTNESS = 2;
-      const DIAGONAL = 1;
+      const SPEED = 12;         // 진행 속도
+      const SOFTNESS = 2;       // feather 폭
+      const DIAGONAL = 1;       // 사선 기울기
       const FPS_CAP = 42;
 
       const FEATHER_GAMMA = 1.5;
-      // ==========================
+      // ======================
 
-      let w = 0, h = 0, dpr = 1;
-      let tile = 0;
-      let t = 0;
-      let raf = 0;
       let last = 0;
+      let acc = 0;
 
       function resize() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
-        w = canvas.clientWidth;
-        h = canvas.clientHeight;
-
-        canvas.width = Math.floor(w * dpr);
-        canvas.height = Math.floor(h * dpr);
-        ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
-
-        tile = Math.floor(Math.min(w, h) / GRID);
+        const rect = canvas.getBoundingClientRect();
+        const dpr = window.devicePixelRatio || 1;
+        canvas.width = Math.max(1, Math.round(rect.width * dpr));
+        canvas.height = Math.max(1, Math.round(rect.height * dpr));
       }
 
-      function smoothstep(a, b, x) {
-        const tt = Math.max(0, Math.min(1, (x - a) / (b - a)));
-        return tt * tt * (3 - 2 * tt);
+      function feather(dist, w, s) {
+        // dist: 사선 중심에서의 거리(타일 단위)
+        // w: wave width, s: softness
+        const a = Math.max(0, 1 - (Math.abs(dist) - w) / Math.max(0.0001, s));
+        return Math.pow(a, FEATHER_GAMMA);
       }
 
-      function wrap01(v, m) { return ((v % m) + m) % m; }
+      function draw(t) {
+        const w = canvas.width;
+        const h = canvas.height;
 
-      function draw(ts) {
-        if (!last) last = ts;
-        const dt = ts - last;
-        if (dt < 1000 / FPS_CAP) {
-          raf = requestAnimationFrame(draw);
-          return;
-        }
-        last = ts;
-
-        t += 0.016 * SPEED;
-
-        // white base
-        ctx.fillStyle = '#fff';
+        // background white
+        ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, w, h);
 
-        const frameW = GRID * tile;
-        const frameH = GRID * tile;
-        const ox = Math.floor((w - frameW) / 2);
-        const oy = Math.floor((h - frameH) / 2);
+        const cellW = w / GRID_COLS;
+        const cellH = h / GRID_ROWS;
 
-        // seamless loop
-        const LOOP = WAVE_SPACING * WAVE_COUNT;
-        const phaseWrapped = wrap01(t, LOOP);
+        // draw tiles (white fill + black border)
+        // then wave overlays as black fill with feather alpha
+        for (let y = 0; y < GRID_ROWS; y++) {
+          for (let x = 0; x < GRID_COLS; x++) {
+            const px = x * cellW;
+            const py = y * cellH;
 
-        // fill tiles
-        for (let r = 0; r < GRID; r++) {
-          for (let c = 0; c < GRID; c++) {
-            const x = ox + c * tile;
-            const y = oy + r * tile;
+            // border
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = Math.max(1, BORDER * (window.devicePixelRatio || 1) * 0.5);
+            ctx.strokeRect(
+              px + 0.5,
+              py + 0.5,
+              cellW - 1,
+              cellH - 1
+            );
 
-            const diag = c + DIAGONAL * r;
-            const diagWrapped = wrap01(diag, LOOP);
+            // wave computation in tile-space
+            // base coordinate along diagonal
+            const u = (x + y * DIAGONAL);
 
-            let minDist = Infinity;
-            for (let k = 0; k < WAVE_COUNT; k++) {
-              const center = wrap01(phaseWrapped + k * WAVE_SPACING, LOOP);
-              const raw = Math.abs(diagWrapped - center);
-              const dist = Math.min(raw, LOOP - raw);
-              if (dist < minDist) minDist = dist;
+            // multiple waves, seamless loop
+            // wave center moves forward with time, repeating
+            // period in tile-space:
+            const period = WAVE_SPACING * WAVE_COUNT;
+
+            // t normalized to tile-space motion
+            const shift = (t * SPEED) / 60;
+
+            let aMax = 0;
+            for (let i = 0; i < WAVE_COUNT; i++) {
+              const center = (shift + i * WAVE_SPACING) % period;
+              // wrap distance to nearest repetition
+              let d = u - center;
+              // make wrap smoother:
+              d = ((d + period / 2) % period) - period / 2;
+
+              const a = feather(d, WAVE_WIDTH, SOFTNESS);
+              if (a > aMax) aMax = a;
             }
 
-            const edge0 = WAVE_WIDTH - SOFTNESS;
-            const edge1 = WAVE_WIDTH + SOFTNESS;
-            const inside = 1 - smoothstep(edge0, edge1, minDist);
-
-            if (inside > 0.001) {
-              const alpha = Math.min(1, Math.max(0, Math.pow(inside, FEATHER_GAMMA)));
-              ctx.fillStyle = `rgba(0,0,0,${alpha})`;
-              ctx.fillRect(x, y, tile, tile);
+            if (aMax > 0.001) {
+              ctx.fillStyle = `rgba(0,0,0,${Math.min(1, aMax)})`;
+              ctx.fillRect(px, py, cellW, cellH);
             }
           }
         }
-
-        // grid stroke
-        ctx.lineWidth = BORDER;
-        ctx.strokeStyle = '#000';
-        ctx.beginPath();
-
-        for (let c = 0; c <= GRID; c++) {
-          const xx = ox + c * tile + 0.5;
-          ctx.moveTo(xx, oy);
-          ctx.lineTo(xx, oy + frameH);
-        }
-        for (let r = 0; r <= GRID; r++) {
-          const yy = oy + r * tile + 0.5;
-          ctx.moveTo(ox, yy);
-          ctx.lineTo(ox + frameW, yy);
-        }
-        ctx.stroke();
-
-        raf = requestAnimationFrame(draw);
       }
 
-      function onVis() {
-        if (document.hidden) {
-          cancelAnimationFrame(raf);
-          raf = 0;
-          last = 0;
-        } else if (!raf) {
-          last = 0;
-          raf = requestAnimationFrame(draw);
-        }
-      }
+      function loop(ts) {
+        if (!last) last = ts;
+        const dt = ts - last;
+        last = ts;
 
-      window.addEventListener('resize', resize);
-      document.addEventListener('visibilitychange', onVis);
+        const step = 1000 / FPS_CAP;
+        acc += dt;
+
+        while (acc >= step) {
+          acc -= step;
+          // use time in frames-like unit
+          const t = ts / 16.6667;
+          draw(t);
+        }
+
+        requestAnimationFrame(loop);
+      }
 
       resize();
-      raf = requestAnimationFrame(draw);
+      window.addEventListener('resize', resize);
+      requestAnimationFrame(loop);
     })();
 
 
-    /* ===== App logic (original behavior preserved) ===== */
+    /* ===============================
+       APP UI LOGIC (uploads/generate)
+    =============================== */
 
-    // file stores
+    // 파일 저장소 (DataTransfer 사용)
     let moduleFileList = new DataTransfer();
-    let imageFileList = new DataTransfer();
+    let targetFileList = new DataTransfer();
 
-    // DOM
+    // DOM 요소
     const moduleFilesInput = document.getElementById('moduleFiles');
-    const imageFilesInput  = document.getElementById('imageFiles');
+    const targetFilesInput = document.getElementById('targetFiles');
     const moduleLabel = document.getElementById('moduleLabel');
-    const imageLabel  = document.getElementById('imageLabel');
+    const targetLabel = document.getElementById('targetLabel');
     const generateBtn = document.getElementById('generateBtn');
     const modulePreview = document.getElementById('modulePreview');
-    const imagePreview  = document.getElementById('imagePreview');
+    const targetPreview = document.getElementById('targetPreview');
 
+    // 모듈 파일 선택 핸들러
     moduleFilesInput.addEventListener('change', async (e) => {
       if (e.target.files.length === 0) {
         e.target.files = moduleFileList.files;
@@ -711,32 +768,33 @@
       checkFormValid();
     });
 
-    imageFilesInput.addEventListener('change', (e) => {
+    // 이미지 파일 선택 핸들러
+    targetFilesInput.addEventListener('change', (e) => {
       if (e.target.files.length === 0) {
-        e.target.files = imageFileList.files;
+        e.target.files = targetFileList.files;
         return;
       }
 
       for (let file of e.target.files) {
         let isDuplicate = false;
-        for (let existingFile of imageFileList.files) {
+        for (let existingFile of targetFileList.files) {
           if (existingFile.name === file.name && existingFile.size === file.size) {
             isDuplicate = true; break;
           }
         }
-        if (!isDuplicate) imageFileList.items.add(file);
+        if (!isDuplicate) targetFileList.items.add(file);
       }
 
-      e.target.files = imageFileList.files;
+      e.target.files = targetFileList.files;
 
-      updateImageUI();
+      updateTargetUI();
       checkFormValid();
     });
 
     function updateModuleUI() {
       const count = moduleFileList.files.length;
       if (count > 0) {
-        moduleLabel.textContent = `${count} modules selected`;
+        moduleLabel.textContent = `${count} images selected`;
         moduleLabel.classList.add('has-files');
       } else {
         moduleLabel.textContent = 'Upload images';
@@ -744,33 +802,33 @@
       }
     }
 
-    function updateImageUI() {
-      const count = imageFileList.files.length;
+    function updateTargetUI() {
+      const count = targetFileList.files.length;
       if (count > 0) {
-        imageLabel.textContent = `${count} images selected`;
-        imageLabel.classList.add('has-files');
+        targetLabel.textContent = `${count} images selected`;
+        targetLabel.classList.add('has-files');
       } else {
-        imageLabel.textContent = 'Upload images';
-        imageLabel.classList.remove('has-files');
+        targetLabel.textContent = 'Upload images';
+        targetLabel.classList.remove('has-files');
       }
 
-      imagePreview.innerHTML = '';
-      for (let i = 0; i < imageFileList.files.length; i++) {
-        const file = imageFileList.files[i];
+      targetPreview.innerHTML = '';
+      for (let i = 0; i < targetFileList.files.length; i++) {
+        const file = targetFileList.files[i];
         const item = document.createElement('div');
-        item.className = 'image-item';
+        item.className = 'target-item';
 
         const reader = new FileReader();
         reader.onload = (ev) => {
           item.innerHTML = `
-            <button class="remove-btn" onclick="removeImageFile(${i})" title="Remove">×</button>
+            <button class="remove-btn" onclick="removeTargetFile(${i})" title="Remove">×</button>
             <img src="${ev.target.result}" alt="${file.name}">
             <div class="filename">${file.name}</div>
           `;
         };
         reader.readAsDataURL(file);
 
-        imagePreview.appendChild(item);
+        targetPreview.appendChild(item);
       }
     }
 
@@ -787,25 +845,25 @@
       checkFormValid();
     }
 
-    function removeImageFile(index) {
+    function removeTargetFile(index) {
       const newFileList = new DataTransfer();
-      for (let i = 0; i < imageFileList.files.length; i++) {
-        if (i !== index) newFileList.items.add(imageFileList.files[i]);
+      for (let i = 0; i < targetFileList.files.length; i++) {
+        if (i !== index) newFileList.items.add(targetFileList.files[i]);
       }
-      imageFileList = newFileList;
-      imageFilesInput.files = imageFileList.files;
+      targetFileList = newFileList;
+      targetFilesInput.files = targetFileList.files;
 
-      updateImageUI();
+      updateTargetUI();
       checkFormValid();
     }
 
     function checkFormValid() {
       const hasModules = moduleFileList.files.length > 0;
-      const hasImages  = imageFileList.files.length > 0;
-      generateBtn.disabled = !(hasModules && hasImages);
+      const hasTargets = targetFileList.files.length > 0;
+      generateBtn.disabled = !(hasModules && hasTargets);
     }
 
-    // analyze modules
+    // 모듈 분석
     async function analyzeModules() {
       if (moduleFileList.files.length === 0) {
         modulePreview.innerHTML = '';
@@ -816,7 +874,10 @@
       for (let file of moduleFileList.files) formData.append('module_files', file);
 
       try {
-        const response = await fetch('/api/analyze-modules', { method: 'POST', body: formData });
+        const response = await fetch('/api/analyze-modules', {
+          method: 'POST',
+          body: formData
+        });
         const data = await response.json();
 
         if (data.success) {
@@ -841,83 +902,7 @@
       }
     }
 
-    // output viewer state
-    let generatedImages = [];
-    let currentImageIndex = 0;
-
-    function updateImageViewer() {
-      const imageDisplay = document.getElementById('imageDisplay');
-      const imageCounter = document.getElementById('imageCounter');
-      const prevBtn = document.getElementById('prevBtn');
-      const nextBtn = document.getElementById('nextBtn');
-      const downloadBtn = document.getElementById('downloadCurrentImageBtn');
-      const downloadAllBtn = document.getElementById('downloadAllImagesBtn');
-
-      if (generatedImages.length === 0) {
-        imageDisplay.innerHTML = '<p>No images to display</p>';
-        imageCounter.textContent = '0 / 0';
-        prevBtn.disabled = true;
-        nextBtn.disabled = true;
-        downloadBtn.style.display = 'none';
-        downloadAllBtn.style.display = 'none';
-        return;
-      }
-
-      const currentImage = generatedImages[currentImageIndex];
-      imageDisplay.innerHTML = `<img src="/outputs/${currentImage}" alt="Generated Image ${currentImageIndex + 1}">`;
-      imageCounter.textContent = `${currentImageIndex + 1} / ${generatedImages.length}`;
-
-      prevBtn.disabled = currentImageIndex === 0;
-      nextBtn.disabled = currentImageIndex === generatedImages.length - 1;
-      downloadBtn.style.display = 'inline-block';
-      downloadAllBtn.style.display = 'inline-block';
-    }
-
-    document.getElementById('prevBtn').addEventListener('click', () => {
-      if (currentImageIndex > 0) { currentImageIndex--; updateImageViewer(); }
-    });
-
-    document.getElementById('nextBtn').addEventListener('click', () => {
-      if (currentImageIndex < generatedImages.length - 1) { currentImageIndex++; updateImageViewer(); }
-    });
-
-    document.getElementById('downloadCurrentImageBtn').addEventListener('click', () => {
-      if (generatedImages.length > 0) {
-        const currentImage = generatedImages[currentImageIndex];
-        const link = document.createElement('a');
-        link.href = `/outputs/${currentImage}`;
-        link.download = currentImage;
-        link.click();
-      }
-    });
-
-    document.getElementById('downloadAllImagesBtn').addEventListener('click', () => {
-      if (generatedImages.length === 0) return;
-      window.location.href = '/api/download-results';
-    });
-
-    document.getElementById('toggleDetailsBtn').addEventListener('click', () => {
-      const detailsContent = document.getElementById('detailsContent');
-      const toggleBtn = document.getElementById('toggleDetailsBtn');
-
-      if (detailsContent.classList.contains('active')) {
-        detailsContent.classList.remove('active');
-        toggleBtn.textContent = 'Show Detailed Statistics';
-      } else {
-        detailsContent.classList.add('active');
-        toggleBtn.textContent = 'Hide Detailed Statistics';
-      }
-    });
-
-    document.getElementById('downloadMdBtn').addEventListener('click', () => {
-      window.location.href = '/api/download-md';
-    });
-
-    document.getElementById('downloadResultsBtn').addEventListener('click', () => {
-      window.location.href = '/api/download-results';
-    });
-
-    // Generate
+    // 생성 버튼
     generateBtn.addEventListener('click', async () => {
       const loadingSection = document.getElementById('loadingSection');
       const resultSection = document.getElementById('resultSection');
@@ -929,14 +914,19 @@
       generateBtn.disabled = true;
 
       const formData = new FormData();
+
       for (let file of moduleFileList.files) formData.append('module_files', file);
-      for (let file of imageFileList.files) formData.append('target_files', file); // backend expects target_files
+      for (let file of targetFileList.files) formData.append('target_files', file);
 
       formData.append('grid_size', document.getElementById('gridSize').value);
       formData.append('output_dpi', document.getElementById('outputDpi').value);
 
       try {
-        const response = await fetch('/api/generate', { method: 'POST', body: formData });
+        const response = await fetch('/api/generate', {
+          method: 'POST',
+          body: formData
+        });
+
         const data = await response.json();
 
         loadingSection.classList.remove('active');
@@ -973,6 +963,88 @@
       } finally {
         generateBtn.disabled = false;
       }
+    });
+
+    // 이미지 뷰어
+    let generatedImages = [];
+    let currentImageIndex = 0;
+
+    function updateImageViewer() {
+      const imageDisplay = document.getElementById('imageDisplay');
+      const imageCounter = document.getElementById('imageCounter');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const downloadBtn = document.getElementById('downloadCurrentImageBtn');
+      const downloadAllBtn = document.getElementById('downloadAllImagesBtn');
+
+      if (generatedImages.length === 0) {
+        imageDisplay.innerHTML = '<p>No images to display</p>';
+        imageCounter.textContent = '0 / 0';
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+        downloadBtn.style.display = 'none';
+        downloadAllBtn.style.display = 'none';
+        return;
+      }
+
+      const currentImage = generatedImages[currentImageIndex];
+      imageDisplay.innerHTML = `<img src="/outputs/${currentImage}" alt="Generated Image ${currentImageIndex + 1}">`;
+      imageCounter.textContent = `${currentImageIndex + 1} / ${generatedImages.length}`;
+
+      prevBtn.disabled = currentImageIndex === 0;
+      nextBtn.disabled = currentImageIndex === generatedImages.length - 1;
+      downloadBtn.style.display = 'inline-block';
+      downloadAllBtn.style.display = 'inline-block';
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', () => {
+      if (currentImageIndex > 0) {
+        currentImageIndex--;
+        updateImageViewer();
+      }
+    });
+
+    document.getElementById('nextBtn').addEventListener('click', () => {
+      if (currentImageIndex < generatedImages.length - 1) {
+        currentImageIndex++;
+        updateImageViewer();
+      }
+    });
+
+    document.getElementById('downloadCurrentImageBtn').addEventListener('click', () => {
+      if (generatedImages.length > 0) {
+        const currentImage = generatedImages[currentImageIndex];
+        const link = document.createElement('a');
+        link.href = `/outputs/${currentImage}`;
+        link.download = currentImage;
+        link.click();
+      }
+    });
+
+    document.getElementById('downloadAllImagesBtn').addEventListener('click', () => {
+      if (generatedImages.length === 0) return;
+      window.location.href = '/api/download-results';
+    });
+
+    document.getElementById('toggleDetailsBtn').addEventListener('click', () => {
+      const detailsContent = document.getElementById('detailsContent');
+      const toggleBtn = document.getElementById('toggleDetailsBtn');
+
+      if (detailsContent.classList.contains('active')) {
+        detailsContent.classList.remove('active');
+        toggleBtn.textContent = 'Show Detailed Statistics';
+      } else {
+        detailsContent.classList.add('active');
+        toggleBtn.textContent = 'Hide Detailed Statistics';
+      }
+    });
+
+    document.getElementById('downloadMdBtn').addEventListener('click', () => {
+      window.location.href = '/api/download-md';
+    });
+
+    document.getElementById('downloadResultsBtn').addEventListener('click', () => {
+      window.location.href = '/api/download-results';
     });
   </script>
 </body>
