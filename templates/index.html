@@ -476,7 +476,7 @@
   <div class="container">
     <div class="header">
       <h1>GridLab</h1>
-      <p>Generate images from modules.</p>
+      <p>Generate images from modules.</p><br>
 
       <div class="heroWrap">
         <div class="heroVisual" aria-label="Animated grid preview">
@@ -601,7 +601,7 @@
     /* ===============================
        HERO GRID ANIMATION
        - 4:3 canvas
-       - GRID: 30 cols, 23 rows
+       - GRID: 30 cols, 20 rows
        - seamless loop
     =============================== */
     (() => {
@@ -616,10 +616,10 @@
 
       const WAVE_WIDTH = 1;     // 타일 단위(두께)
       const WAVE_COUNT = 6;     // 동시에 사선 개수
-      const WAVE_SPACING = 8;   // 사선 간 간격(타일 단위)
+      const WAVE_SPACING = 10;   // 사선 간 간격(타일 단위)
 
-      const SPEED = 8;         // 진행 속도
-      const SOFTNESS = 2.5;       // feather 폭
+      const SPEED = 5;         // 진행 속도
+      const SOFTNESS = 3;       // feather 폭
       const DIAGONAL = 1;       // 사선 기울기
       const FPS_CAP = 42;
 
